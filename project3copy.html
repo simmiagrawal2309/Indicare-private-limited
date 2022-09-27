@@ -1,0 +1,133 @@
+<template>
+    <!-- <div if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading..." variant="inverse">
+        </lightning-spinner>
+    </div> -->
+    <lightning-tabset variant="scoped" style="color: orange;">
+        <lightning-tab label="Contacts">
+            <template for:each={getLeadSourceValues} for:item="getLeadSourceValues">
+                <lightning-button-group key={getLeadSourceValues}>
+                    <lightning-button label={getLeadSourceValues} onclick={btnClick} class="btn"
+                        data-id={getLeadSourceValues} value={recordId}></lightning-button>
+                </lightning-button-group>
+            </template>
+            <lightning-button label="ALL" onclick={btnClick} class="btn" data-id="ALL" value={recordId}>
+            </lightning-button>
+            <br>
+            <br>
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows>
+                    <template for:each={contacts} for:item="contacts">
+
+                        <lightning-layout-item key={contacts.id} size="12" small-device-size="6" medium-device-size="4"
+                            large-device-size="3" padding="around-small">
+
+
+                            <lightning-card title={contacts.LastName} style="background: red;">
+
+
+                                <lightning-button-menu slot="actions">
+                                    <div class="slds-p-around_medium container lgc-bg">
+
+                                        <template for:each={getLeadSourceValues} for:item="getLeadSourceValues">
+                                            <lightning-menu-item key={getLeadSourceValues} label={getLeadSourceValues}
+                                                onclick={getValue} data-id={getLeadSourceValues} value={contacts.Id}>
+                                            </lightning-menu-item>
+
+                                        </template>
+                                    </div>
+
+                                    <!-- spinner -->
+                                    <!-- <p if:true={isLoaded}>Content has been loaded.</p> -->
+                                    <!-- <div if:true={isLoading}>
+                                        <lightning-spinner alternative-text="Loading..." variant="brand">
+                                        </lightning-spinner>
+                                    </div> -->
+
+
+                                </lightning-button-menu>
+
+
+                                <p class="slds-p-horizontal_small" style="color: black;"> Lead Source:
+                                    {contacts.LeadSource}
+                                </p>
+                                <lightning-button-group>
+                                    <lightning-button label="Show Details" onclick={navigateToViewContactPage}
+                                        data-id={contacts.Id}>
+                                    </lightning-button>
+                                    <lightning-button label="Edit" onclick={handleNavigateContact}
+                                        data-id={contacts.Id}>
+                                    </lightning-button>
+                                </lightning-button-group>
+
+                            </lightning-card>
+
+                        </lightning-layout-item>
+                    </template>
+
+                </lightning-layout>
+            </div>
+        </lightning-tab>
+        <lightning-tab label="Opportunities">
+            <template for:each={getStageNameValues} for:item="getStageNameValues">
+                <lightning-button-group key={getStageNameValues}>
+                    <lightning-button label={getStageNameValues} onclick={btnOPPClick} class="btn"
+                        data-id={getStageNameValues} value={recordId}></lightning-button>
+                </lightning-button-group>
+            </template>
+            <lightning-button label="ALL" onclick={btnOPPClick} class="btn" data-id="ALL" value={recordId}>
+            </lightning-button>
+
+            <br>
+            <br>
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+
+                <lightning-layout multiple-rows>
+
+                    <template for:each={opportunities} for:item="opportunities">
+                        <lightning-layout-item key={opportunities.id} size="12" small-device-size="6"
+                            medium-device-size="4" large-device-size="3" padding="around-small">
+
+                            <lightning-card variant="Narrow" title={opportunities.Name}>
+
+                                <lightning-button-menu slot="actions">
+                                    <div class="slds-p-around_medium container lgc-bg">
+
+                                        <template for:each={getStageNameValues} for:item="getStageNameValues">
+                                            <lightning-menu-item key={getStageNameValues} label={getStageNameValues}
+                                                onclick={getOppValue} data-id={getStageNameValues}
+                                                value={opportunities.Id}>
+                                            </lightning-menu-item>
+
+                                        </template>
+                                    </div>
+
+                                </lightning-button-menu>
+
+
+
+                                <p class="slds-p-horizontal_small">
+                                    Name: <span style="color: blue;"> {opportunities.StageName} </span> </p>
+
+                                <p class="slds-p-horizontal_small" style="color: black;"> Amount :
+                                    ${opportunities.Amount}</p>
+                                <lightning-button-group>
+                                    <lightning-button label="Show Details" onclick={navigateToViewOpportunityPage}
+                                        data-id={opportunities.Id}>
+                                    </lightning-button>
+                                    <lightning-button label="Edit" onclick={handleNavigate} data-id={opportunities.Id}>
+                                    </lightning-button>
+                                </lightning-button-group>
+
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+
+        </lightning-tab>
+
+    </lightning-tabset>
+
+
+</template>

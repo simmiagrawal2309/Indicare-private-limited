@@ -1,0 +1,16 @@
+
+
+/* .slds-box{
+    border: 4px solid orange;
+
+} */
+
+.backgroundClass{
+    background-color: blue;
+}
+
+.inline1  .inline2{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 0;
+}
